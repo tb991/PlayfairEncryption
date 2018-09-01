@@ -57,19 +57,32 @@ public class Crypt {
 			return countOfAts;
 		}
 	public char[] encrypt(char[][] key, char[] preparedText, int keyWidth) {
+		char[] notout;
+		char[] out = new char[preparedText.length];
 		for (int i = 0; i < preparedText.length; i+=2) {
 			char[] p = new char[] {preparedText[i],preparedText[i+1]};
 			if (diagonalScan(key, p, 5)) {
-				
+				notout = diagPF(key, p, 5);
+				out[i]=notout[0];
+				out[i+1]=notout[1];
 			}
 			else if (vertScan(key, p, 5)) {
-				
+				notout = vertPF(key, p, 5);
+				out[i]=notout[0];
+				out[i+1]=notout[1];
 			}
 			else if(horizScan(key, p, 5)) {
-				
+				notout = horizPF(key, p, 5);
+				out[i]=notout[0];
+				out[i+1]=notout[1];
+			}
+			else {
+				notout = new char[0];
+				out[i]='8';
+				out[i+1]='8';
 			}
 		}
-		return null;
+		return out;
 	}
 	// this method creates the bigram "underneath" the input bigram according to the playfair system
 	public char[] vertPF(char[][] key, char[] bigram, int keyWidth) {
