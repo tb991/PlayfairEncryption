@@ -12,8 +12,17 @@ public class Text {
 	public String getPlaintext() {
 		return plaintext;
 	}
+	public char[] removeJ(String p) {
+		char[] s = p.toCharArray();
+		for (int i = 0; i < s.length; i++) {
+			if (s[i]=='j') {
+				s[i] = 'i';
+			}
+		}
+		return s;
+	}
 	public char[] prepForPlayfair(String p) {
-		char[] c = p.toCharArray();
+		char[] c = this.removeJ(p);
 		char[] out;
 		boolean[] validChars = new boolean[c.length];
 		int numTrue = 0;
