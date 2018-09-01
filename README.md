@@ -1,2 +1,2 @@
 # PlayfairEncryption
-anything related to the playfair encryption algorithm
+this project includes anything related to the playfair encryption algorithm
