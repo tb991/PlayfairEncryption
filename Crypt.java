@@ -1,15 +1,16 @@
-package model;
-
 // this class converts plaintext into a particular cryptogram from the properties of the Key,
 // it uses a Playfair algorithm, which is a simple substitution cipher that operates on bigrams
 public class Crypt {
 	String cryptogram;
-	public Crypt(Key k, Text t, int keyWidth) {
+	public Crypt(Key k, Text t) {
 		char[] p = t.getPlaintext().toCharArray();
 		char[][] ke = k.getPureKey();
 		p = this.preparePlaintext(p); // fill repeats with z and if result is odd put z at the end
-		//cryptogram = String.copyValueOf(this.encrypt(k.getPureKey(), p, keyWidth));
+		cryptogram = String.copyValueOf(this.encrypt(k.getPureKey(), p));
 	}
+    public String get(){
+        return cryptogram;
+    }
 	public char[] preparePlaintext(char[] t) {
 		char[] c;
 		c = t.clone();
@@ -56,7 +57,7 @@ public class Crypt {
 			//System.out.println(countOfAts + " repeats");
 			return countOfAts;
 		}
-	public char[] encrypt(char[][] key, char[] preparedText, int keyWidth) {
+	public char[] encrypt(char[][] key, char[] preparedText) {
 		char[] notout;
 		char[] out = new char[preparedText.length];
 		for (int i = 0; i < preparedText.length; i+=2) {

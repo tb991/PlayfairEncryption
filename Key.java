@@ -1,5 +1,3 @@
-package model;
-
 // this class takes some text string and turns it into a playfair cipher key
 // a playfair cipher key typically takes a word, removes its repeats, then fills the rest of the alphabet 
 // in order after that string, and it does not include j, it organises this from left to right on a 5x5 grid
