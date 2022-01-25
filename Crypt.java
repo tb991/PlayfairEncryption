@@ -11,6 +11,7 @@ public class Crypt {
     public String get(){
         return cryptogram;
     }
+    // prepares the plaintext for encryption according to the playfair algorithm
 	public char[] preparePlaintext(char[] t) {
 		char[] c;
 		c = t.clone();
@@ -24,6 +25,7 @@ public class Crypt {
 		}
 		return c;
 	}
+    // i believe this forces the plaintext to be of an even width
 	private char[] removeOddity(char[] t) {
 		char[] b = new char[t.length+1];
 		if (b.length%2==0) {
@@ -57,6 +59,7 @@ public class Crypt {
 			//System.out.println(countOfAts + " repeats");
 			return countOfAts;
 		}
+    // returns the encryption wrt to the key and the plaintext
 	public char[] encrypt(char[][] key, char[] preparedText) {
 		char[] notout;
 		char[] out = new char[preparedText.length];
@@ -85,7 +88,7 @@ public class Crypt {
 		}
 		return out;
 	}
-	// this method creates the bigram "underneath" the input bigram according to the playfair system
+	// returns encryption characters from vertical
 	public char[] vertPF(char[][] key, char[] bigram, int keyWidth) {
 		char[] out = new char[] {'5','5'}; // null chars
 		for (int i = 0; i < keyWidth; i++) {
@@ -110,6 +113,7 @@ public class Crypt {
 		}
 		return out;		
 	}
+    // returns location along horizontal of encryption characters (to the right)
 	public char[] horizPF(char[][] key, char[] bigram, int keyWidth) {
 		char[] out = new char[] {'5','5'}; // null chars
 		for (int i = 0; i < keyWidth; i++) {
@@ -134,6 +138,7 @@ public class Crypt {
 		}
 		return out;		
 	}
+    // returns the encryption characters of a digonally existing bigram (within the key)
 	public char[] diagPF(char[][] key, char[] bigram, int keyWidth) {
 		char[] out = new char[2];
 		int[] first = getLocation(bigram[0], key, keyWidth);
@@ -142,6 +147,7 @@ public class Crypt {
 		out[1] = key[second[1]][first[0]]; 
 		return out;		
 	}
+    // returns if the two letters of he bigram exist along a diagonal
 	public boolean diagonalScan(char[][] key, char[] bigram, int keyWidth) {
 		boolean out = false;
 		int[] p1 = getLocation(bigram[0], key, 5);
@@ -154,6 +160,7 @@ public class Crypt {
 		}
 		return out;
 	}
+    // returns the locaion of the character int he key (square), or -1's
 	public int[] getLocation(char c, char[][] key, int keyWidth) {
 		int x = -1;
 		int y = -1;
@@ -167,6 +174,7 @@ public class Crypt {
 		}
 		return new int[] {x,y};
 	}
+    // scans across the key vertically for the bigram
 	public boolean vertScan(char[][] key, char[] bigram, int keyWidth) {
 		boolean out = false;
 		for (int i = 0; i < keyWidth; i++) {
@@ -186,7 +194,7 @@ public class Crypt {
 		}
 		return out;
 	}
-
+    // scans across the key horizontally looking for the bigram
 	public boolean horizScan(char[][] key, char[] bigram, int keyWidth) {
 		boolean out = false;
 		for (int i = 0; i < keyWidth; i++) {
@@ -206,6 +214,7 @@ public class Crypt {
 		}
 		return out;
 	}
+    // as per playfair algorithm, occurences of duplicates are interspersed with Z's 
 	public char[] removeDuplicate(char[] p) {
 		for (int i = 0; i < p.length-1; i++) {
 			if (p[i] == p[i+1] && i%2==0) {
@@ -215,6 +224,7 @@ public class Crypt {
 		}
 		return p;
 	}
+    // inserts a Z into array, for use with single letter bigrams and duplicates
 	public char[] insertZ(char[] c, int index) {
 		char[] l = new char[c.length+1];
 		for (int i = 0; i < c.length; i++) {

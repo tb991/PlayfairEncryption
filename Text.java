@@ -1,10 +1,12 @@
 public class Text {
 	
-	private String plaintext;
+	public String plaintext;
+    public String raw;
 	public int[] spaces; // location of the spaces in the text eg helloworld => 5
 	final char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
 	
 	public Text(String t) {
+        raw = t;
 		plaintext = String.copyValueOf(this.prepForPlayfair(t));
 	}
 	public String getPlaintext() {
