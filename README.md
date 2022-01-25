@@ -1,2 +1,4 @@
 # PlayfairEncryption
-this project includes anything related to the playfair encryption algorithm
+lets you decrypt or encrypt using the playfair algorithm
+
+also open to mutating the key
