@@ -12,10 +12,39 @@ class Playfair {
 		print("\n");
 		keyGen("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
 		print("\n");
+		print(removeRepeats("ZZZZZZZZZZZZZZZZZZZZZZZZZZzzzzzzzzzzzzzzzzzzzz"));
+		print("\n");
+		print(removeRepeats("gergeronimoggeronimoerongeronimoimoonigeronimomo"));
+		print("\n");
+		keyprint("gergeronimoggeronimoerongeronimoimoonigeronimomo");
+		print("\n");
+	}
+	// removes repeated characters from a string
+	private static String removeRepeats(String s){
+		String out = "";
+		int i = 0;
+		int j = 0;
+		boolean found;
+		while (i<s.length()){
+			found = false;
+			while (j<out.length()){
+				if (s.charAt(i)==out.charAt(j)){
+					found = true;
+				}
+				j++;
+			}
+			if (!found){
+				out = out + s.charAt(i);
+			}
+			j=0;
+			i++;
+		}
+		return out;
 	}
 	private static void print(Object l){
 		System.out.print(String.valueOf(l));
 	}
+	// helps with key generation alg
 	private static void printy(){
 		int len = 6;
 		int count = 0;
@@ -32,6 +61,7 @@ class Playfair {
 			}
 		}
 	}
+	// easy sqrt alg
 	private static int sqrt(int in){
 		int keyW = 0;
 		while (keyW*keyW <= in){
@@ -40,6 +70,7 @@ class Playfair {
 		keyW--;
 		return keyW;
 	}
+	// extension of printy for a string
 	private static void keyprint(String k){
 		int keyW = sqrt(k.length());
 		int count = 0;
@@ -55,6 +86,7 @@ class Playfair {
 			}
 		}
 	}
+	// playfair key generation with any length, but without repeat detection
 	private static char[][] keyGen(String k){
 		int keyW = sqrt(k.length());
 		int count = 0;
