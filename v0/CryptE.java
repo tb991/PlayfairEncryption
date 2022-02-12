@@ -1,4 +1,4 @@
-class CryptE extends Crypt {	
+class CryptE extends Crypt {
     String plaintext;
     public CryptE(Key k, Text t, boolean forward){
         super(k, t);
