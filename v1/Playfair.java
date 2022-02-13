@@ -2,6 +2,7 @@ class Playfair {
 	static char[][] key;
 	static String alpha; // alphabet
 	static int len;
+    static int sqL;
 	static String txt;
 	public Playfair(String text, String alphabet){
 		alpha = removeRepeats(alphabet);
@@ -22,8 +23,23 @@ class Playfair {
 		}
 		keyGen(keyString);
 		len = keyString.length();
+        sqL = sqrt(len);
 		printActualKey();
+        print(get(0,-1));
+        print(get(-1,1));
+        print(get(0,sqL));
+        print(get(sqL,1));
 	}
+    // 0,0-4 would get the tpo row (if done individually
+    private static char get(int h, int w){
+        if (h==-1){
+            h = sqL-1;
+        }
+        if (w==-1){
+            w = sqL-1;
+        }
+        return key[w%sqL][h%sqL];
+    }
 	public static void main(String[] args){
 		Playfair pf;
 		pf = new Playfair("honeycomb", "abcdefghiklmnopqrstuvwxyz");
