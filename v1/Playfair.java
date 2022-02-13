@@ -74,6 +74,24 @@ class Playfair {
 		}
 		return out;
 	}
+	public String dec(String s){
+		// first replace double occurences of same character with appended special char
+		int i = 0;
+		char a;
+		char b;
+		s = specialify(s);
+		String out = "";
+		char[] bigram;
+		while (i < s.length()-1){
+			bigram = decrypt(s.charAt(i), s.charAt(i+1));
+			a=bigram[0];
+			b=bigram[1];
+			i+=2;
+			out += a;
+			out += b;
+		}
+		return out;
+	}
 	// 0,0-4 would get the top row (if done individually
 	public static char get(int h, int w){
 		if (h==-1){
@@ -198,7 +216,7 @@ class Playfair {
 	}
 	
 	// decryption
-	public static void decrypt(char c, char d){
+	public static char[] decrypt(char c, char d){
 		 boolean[] dir = check(c,d);
 		 char[] out = new char[]{'-','-'};
 		 int[] pos1 = getPos(c);
@@ -218,8 +236,7 @@ class Playfair {
 		 	out[0] = get(pos2[0]-1, pos2[1]);
 		 	out[1] = get(pos1[0]-1, pos1[1]);
 		 }
-		 print(out[0]);
-		 print(out[1]);
+		 return new char[]{out[0], out[1]};
 	}
 	// 01 - col, 10 - row, 00 - diag, 11 - error
 	// finds the 
