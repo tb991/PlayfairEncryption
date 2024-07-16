@@ -52,8 +52,8 @@ class Playfair {
 		if (out.length()%2==1){
 			out += special;
 		}
-		print(out);
-		print("\n");
+		//print(out);
+		//print("\n");
 		return out;
 	}
 	public String enc(String s){
@@ -233,8 +233,8 @@ class Playfair {
 		 }
 		 else if (!dir[0] && dir[1]){
 		 	// it's a column
-		 	out[0] = get(pos2[0]-1, pos2[1]);
-		 	out[1] = get(pos1[0]-1, pos1[1]);
+		 	out[0] = get(pos1[0]-1, pos1[1]);
+		 	out[1] = get(pos2[0]-1, pos2[1]);
 		 }
 		 return new char[]{out[0], out[1]};
 	}
@@ -431,3 +431,4 @@ class Playfair {
 	
 	
 }
+
