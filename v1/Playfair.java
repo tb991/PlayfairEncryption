@@ -31,30 +31,36 @@ class Playfair {
 		printActualKey();
 	}
 	// put z between twin chars and append it if length is odd
+	// 22-7-24 changed so that it doesn't apply across bigrams
+	// btw out is the string that has been specialified
 	private static String specialify(String s){
-		int i = 0;
-		int repeats = 0;
-		char curr;
-		char next;
+		int idx = 0;
+		int repeatBigrams = 0;
 		String out = "";
-		while (i < s.length()-1){
-			curr = s.charAt(i);
-			next = s.charAt(i+1);
-			out+=curr;
-			if (curr==next){
-				//print(curr);
-				repeats++;
-				out+=special;
+		while (idx < s.length()-1){
+			
+			if (s.charAt(idx) == s.charAt(idx + 1)){
+				repeatBigrams += 1;
+				
+				out += s.charAt(idx);
+				out += special;
+				//out += s.charAt(idx + 1);
+				idx -= 1; // since for example BB -> BZB, the bigrams now start at 2nd B
 			}
-			i+=1;
+			else{
+				out += s.charAt(idx);
+				out += s.charAt(idx + 1);
+			}
+			idx += 2;
 		}
-		out += s.charAt(i);
+		if (idx+1 == s.length()){
+			out += s.charAt(idx);
+		}
 		if (out.length()%2==1){
 			out += special;
 		}
-		//print(out);
-		//print("\n");
 		return out;
+		
 	}
 	public String enc(String s){
 		// first replace double occurences of same character with appended special char
@@ -62,6 +68,8 @@ class Playfair {
 		char a;
 		char b;
 		s = specialify(s);
+		System.out.println("Specialified: ");
+		System.out.println(s);
 		String out = "";
 		char[] bigram;
 		while (i < s.length()-1){

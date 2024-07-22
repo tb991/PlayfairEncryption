@@ -1,8 +1,8 @@
 class Go{
 	public static void main(String[] args){
 		Playfair p;
-		p = new Playfair("ELEPHANT", "ABCDEFGHIKLMNOPQRSTUVWXYZ");
-		String plaintext = "BANEVADING";
+		p = new Playfair("ELEPHANT673", "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
+		String plaintext = "IWONDERIFANYONEWILLREADTHIS";
 		System.out.println("The encryption of " + plaintext + " is:");
 		p.print(p.enc(plaintext));
 		System.out.println(" ");
