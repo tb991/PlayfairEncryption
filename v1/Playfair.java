@@ -68,8 +68,8 @@ class Playfair {
 		char a;
 		char b;
 		s = specialify(s);
-		System.out.println("Specialified: ");
-		System.out.println(s);
+		//System.out.println("Specialified: ");
+		//System.out.println(s);
 		String out = "";
 		char[] bigram;
 		while (i < s.length()-1){
